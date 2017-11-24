@@ -1,0 +1,12 @@
+1、getServletContext()方法详解
+request.getServletContext().getRealPath("")和request.getServletContext().getRealPath("/")，request.getServletContext().getRealPath("/")获取到的是当前绝对项目路径并且有/号。而""就是没得/号的
+2、ServletContext
+WEB容器在启动时，它会为每个WEB应用程序都创建一个对应的ServletContext对象，它代表当前web应用
+
+ServletConfig对象中维护了ServletContext对象的引用，开发人员在编写servlet时，可以通过ServletConfig.getServletContext方法获得ServletContext对象。
+
+产生一个imgID
+
+new File使用
+
+absolutePath

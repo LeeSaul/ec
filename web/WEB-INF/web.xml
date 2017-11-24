@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <welcome-file-list><welcome-file>
+        welcome.jsp
+    </welcome-file></welcome-file-list>
+    <!--<error-page>-->
+        <!--<error-code>404</error-code>-->
+        <!--<location>/error.jsp</location>-->
+    <!--</error-page>-->
+    <!--放行的请求-->
+    <context-param>
+        <param-name>uncheckPath</param-name>
+        <param-value>
+            /welcome.jsp,
+            /isExistCustomer.do,
+            /page/customer/customerLogin.jsp,
+            /customer.register,/customer.login,
+            /page/customer/customerRegister.jsp
+        </param-value>
+    </context-param>
+    <!--session的key-->
+    <context-param>
+        <param-name>customer</param-name>
+        <param-value>customer</param-value>
+    </context-param>
+    <!--重定向后的页面 -->
+    <context-param>
+        <param-name>sendRedirectPath</param-name>
+        <param-value>page/customer/customerLogin.jsp</param-value>
+    </context-param>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/customer_login.do</url-pattern>
+        <url-pattern>/customer_register.do</url-pattern>
+    </filter-mapping>
+</web-app>

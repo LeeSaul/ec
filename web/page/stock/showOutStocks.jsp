@@ -1,0 +1,57 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: user
+  Date: 2017/9/25
+  Time: 19:55
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <%
+        String contextPath = request.getContextPath();
+        String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+
+                contextPath+"/";
+
+
+    %>
+    <title>出库记录</title>
+    <base href="<%= basePath%>">
+</head>
+<body>
+<a href="page/admin/adminIndex.jsp">返回首页</a>
+<h2>${requestScope.info}</h2>
+<c:choose>
+    <c:when test="${requestScope.outStocks!=null}">
+        <table border="1px solid #000000" cellspacing="0">
+            <caption>出库记录</caption>
+            <tr>
+                <th>商品名</th>
+                <th>出库单价</th>
+                <th>出库数量</th>
+                <th>出库时间</th>
+                <th>总价</th>
+                <th>操作员</th>
+            </tr>
+            <c:forEach var="outStock" items="${requestScope.outStocks}">
+                <c:set var="temp" value="0" />
+                <tr>
+                    <td>${outStock.productName}</td>
+                    <td>${outStock.outUnitPrice}</td>
+                    <td>${outStock.outStockNumber}</td>
+                    <td>${outStock.outTime}</td>
+                    <td>${temp=outStock.outUnitPrice*outStock.outStockNumber}</td>
+                    <td>${outStock.name}</td>
+                </tr>
+                <c:set var="sum" value="${temp+sum}" />
+            </c:forEach>
+        </table>
+        <h2>合计：${sum}</h2>
+    </c:when>
+    <c:otherwise>
+        <h2>暂无出库记录</h2>
+    </c:otherwise>
+</c:choose>
+</body>
+</html>
